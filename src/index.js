@@ -66,6 +66,12 @@ class PhoneBook extends React.Component {
     }));
   };
 
+  handleDeleteContact = id => {
+    const { contacts } = this.state;
+    const updateContacts = contacts.filter(contact => contact.id !== id);
+    this.setState({ contacts: updateContacts });
+  };
+
   render() {
     const { name, number, filter, contacts } = this.state;
     return (
@@ -83,7 +89,10 @@ class PhoneBook extends React.Component {
           filter={filter}
           handleChangeFilterField={this.handleChangeFilterField}
         ></Filter>
-        <ContactList contacts={contacts}></ContactList>
+        <ContactList
+          contacts={contacts}
+          onDeleteContact={this.handleDeleteContact}
+        ></ContactList>
       </div>
     );
   }
