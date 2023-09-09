@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import FormPhoneBook from './components/formPhoneBook/FormPhoneBook';
+import ContactForm from './components/formPhoneBook/ContactForm';
 import ListContacts from 'components/listContacts/ListContacts';
-import FilterField from 'components/filterField/FilterField';
+import Filter from 'components/filter/Filter';
 import { nanoid } from 'nanoid';
 
 class PhoneBook extends React.Component {
@@ -60,18 +60,18 @@ class PhoneBook extends React.Component {
     return (
       <div>
         <h1>PhoneBook</h1>
-        <FormPhoneBook
+        <ContactForm
           name={name}
           number={number}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-        ></FormPhoneBook>
+        ></ContactForm>
 
         <h2>Contacts</h2>
-        <FilterField
+        <Filter
           filter={filter}
           handleChangeFilterField={this.handleChangeFilterField}
-        ></FilterField>
+        ></Filter>
         <ListContacts contacts={contacts}></ListContacts>
       </div>
     );

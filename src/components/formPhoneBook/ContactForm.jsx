@@ -1,6 +1,6 @@
 import css from './FormPhoneBook.module.css';
 
-const FormPhoneBook = ({ name, handleChange, handleSubmit, number }) => (
+const ContactForm = ({ name, handleChange, handleSubmit, number }) => (
   <form className={css.form} onSubmit={handleSubmit}>
     <label>
       Name
@@ -31,4 +31,4 @@ const FormPhoneBook = ({ name, handleChange, handleSubmit, number }) => (
   </form>
 );
 
-export default FormPhoneBook;
+export default ContactForm;
