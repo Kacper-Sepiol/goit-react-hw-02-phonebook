@@ -25,7 +25,22 @@ class PhoneBook extends React.Component {
   };
 
   handleChangeFilterField = evt => {
+    const { filter, contacts } = this.state;
+    const copyContacts = contacts;
+
     this.setState({ filter: evt.currentTarget.value });
+
+    const idToRemove = evt.currentTarget.value;
+
+    const updatedContacts = contacts.filter(
+      contact => contact.name[0] === idToRemove
+    );
+    this.setState({ contacts: [...updatedContacts] });
+
+    if (evt.currentTarget.value === '') {
+      this.setState({ contacts: copyContacts });
+    }
+    console.log(evt.currentTarget.value);
   };
 
   handleSubmit = e => {
@@ -52,6 +67,9 @@ class PhoneBook extends React.Component {
         ></FormPhoneBook>
 
         <h2>Contacts</h2>
+        <FilterField
+          handleChangeFilterField={this.handleChangeFilterField}
+        ></FilterField>
         <ListContacts contacts={this.state.contacts}></ListContacts>
       </div>
     );
