@@ -24,8 +24,6 @@ class PhoneBook extends React.Component {
       contacts: [...prevState.contacts, newContact],
       name: '',
     }));
-
-    console.log(this.state);
   };
 
   render() {
