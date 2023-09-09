@@ -57,7 +57,7 @@ class PhoneBook extends React.Component {
       return;
     }
 
-    const newContact = { id: nanoid(), name, id: nanoid(), number };
+    const newContact = { id: nanoid(), name, number };
 
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
