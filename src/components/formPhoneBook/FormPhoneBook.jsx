@@ -1,7 +1,7 @@
 import css from './FormPhoneBook.module.css';
 
-const FormPhoneBook = () => (
-  <form className={css.form}>
+const FormPhoneBook = ({ name, handleChange, handleSubmit }) => (
+  <form className={css.form} onSubmit={handleSubmit}>
     <label>
       Name
       <input
@@ -10,6 +10,8 @@ const FormPhoneBook = () => (
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
+        value={name}
+        onChange={handleChange}
       />
     </label>
 
