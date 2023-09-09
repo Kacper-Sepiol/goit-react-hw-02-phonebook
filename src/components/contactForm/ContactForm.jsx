@@ -1,4 +1,5 @@
 import css from './FormPhoneBook.module.css';
+import PropTypes from 'prop-types';
 
 const ContactForm = ({ name, handleChange, handleSubmit, number }) => (
   <form className={css.form} onSubmit={handleSubmit}>
@@ -32,3 +33,10 @@ const ContactForm = ({ name, handleChange, handleSubmit, number }) => (
 );
 
 export default ContactForm;
+
+ContactForm.propTypes = {
+  name: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  number: PropTypes.string.isRequired,
+};
