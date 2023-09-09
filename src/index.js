@@ -9,20 +9,23 @@ class PhoneBook extends React.Component {
   state = {
     contacts: [],
     name: '',
+    number: '',
   };
 
   handleChange = event => {
-    this.setState({ name: event.currentTarget.value });
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    const { name } = this.state;
+    const { name, number } = this.state;
 
-    const newContact = { id: nanoid(), name };
+    const newContact = { id: nanoid(), name, id: nanoid(), number };
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
       name: '',
+      number: '',
     }));
   };
 
@@ -32,6 +35,7 @@ class PhoneBook extends React.Component {
         <h1>PhoneBook</h1>
         <FormPhoneBook
           name={this.state.name}
+          number={this.state.number}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         ></FormPhoneBook>
