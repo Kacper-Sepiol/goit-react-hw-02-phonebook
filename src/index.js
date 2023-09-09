@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import FormPhoneBook from './components/formPhoneBook/FormPhoneBook';
 import ListContacts from 'components/listContacts/ListContacts';
+import { nanoid } from 'nanoid';
 
 class PhoneBook extends React.Component {
   state = {
@@ -16,17 +17,29 @@ class PhoneBook extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { contacts, name } = this.state;
+    const { name } = this.state;
+
+    const newContact = { id: nanoid(), name };
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, newContact],
+      name: '',
+    }));
+
+    console.log(this.state);
   };
 
   render() {
     return (
       <div>
         <h1>PhoneBook</h1>
-        <FormPhoneBook></FormPhoneBook>
+        <FormPhoneBook
+          name={this.state.name}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        ></FormPhoneBook>
 
         <h2>Contacts</h2>
-        <ListContacts></ListContacts>
+        <ListContacts contacts={this.state.contacts}></ListContacts>
       </div>
     );
   }
