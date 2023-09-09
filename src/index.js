@@ -23,6 +23,7 @@ class PhoneBook extends React.Component {
 
   handleChange = event => {
     const { name, value } = event.target;
+
     this.setState({ [name]: value });
   };
 
@@ -45,9 +46,19 @@ class PhoneBook extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { name, number } = this.state;
+    const { name, number, contacts } = this.state;
+
+    const nameExists = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (nameExists) {
+      alert('nie');
+      return;
+    }
 
     const newContact = { id: nanoid(), name, id: nanoid(), number };
+
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
       name: '',
