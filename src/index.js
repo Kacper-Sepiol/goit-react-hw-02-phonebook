@@ -19,7 +19,7 @@ class PhoneBook extends React.Component {
     filter: '',
   };
 
-  copyContacts = [...this.state.contacts];
+  copyContacts = this.state.contacts;
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -27,16 +27,20 @@ class PhoneBook extends React.Component {
   };
 
   handleChangeFilterField = evt => {
-    const { copyContacts } = this.state;
+    const { contacts } = this.state;
     const filterValue = evt.currentTarget.value.toLowerCase();
 
     this.setState({ filter: filterValue });
 
-    const filteredContacts = copyContacts.filter(contact =>
+    const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(filterValue)
     );
 
     this.setState({ contacts: filteredContacts });
+
+    if (evt.currentTarget.value === '') {
+      this.setState({ contacts: this.copyContacts });
+    }
   };
 
   handleSubmit = e => {
