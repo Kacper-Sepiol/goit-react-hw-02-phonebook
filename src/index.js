@@ -19,28 +19,24 @@ class PhoneBook extends React.Component {
     filter: '',
   };
 
+  copyContacts = [...this.state.contacts];
+
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
   handleChangeFilterField = evt => {
-    const { filter, contacts } = this.state;
-    const copyContacts = contacts;
+    const { copyContacts } = this.state;
+    const filterValue = evt.currentTarget.value.toLowerCase();
 
-    this.setState({ filter: evt.currentTarget.value });
+    this.setState({ filter: filterValue });
 
-    const idToRemove = evt.currentTarget.value;
-
-    const updatedContacts = contacts.filter(
-      contact => contact.name[0] === idToRemove
+    const filteredContacts = copyContacts.filter(contact =>
+      contact.name.toLowerCase().includes(filterValue)
     );
-    this.setState({ contacts: [...updatedContacts] });
 
-    if (evt.currentTarget.value === '') {
-      this.setState({ contacts: copyContacts });
-    }
-    console.log(evt.currentTarget.value);
+    this.setState({ contacts: filteredContacts });
   };
 
   handleSubmit = e => {
@@ -56,21 +52,23 @@ class PhoneBook extends React.Component {
   };
 
   render() {
+    const { name, number, filter, contacts } = this.state;
     return (
       <div>
         <h1>PhoneBook</h1>
         <FormPhoneBook
-          name={this.state.name}
-          number={this.state.number}
+          name={name}
+          number={number}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         ></FormPhoneBook>
 
         <h2>Contacts</h2>
         <FilterField
+          filter={filter}
           handleChangeFilterField={this.handleChangeFilterField}
         ></FilterField>
-        <ListContacts contacts={this.state.contacts}></ListContacts>
+        <ListContacts contacts={contacts}></ListContacts>
       </div>
     );
   }
