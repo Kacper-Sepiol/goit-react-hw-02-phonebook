@@ -1,5 +1,7 @@
+import css from './FormPhoneBook.module.css';
+
 const FormPhoneBook = () => (
-  <form>
+  <form className={css.form}>
     <label>
       Name
       <input
@@ -11,6 +13,10 @@ const FormPhoneBook = () => (
       />
     </label>
 
-    <button type="submit">Add contact</button>
+    <button type="submit" className={css.buttonAdd}>
+      Add contact
+    </button>
   </form>
 );
+
+export default FormPhoneBook;
